@@ -112,8 +112,8 @@ function hsvToRgb(h, s, v) {
 }
 
 function updateSettings() {
-  zoom /= resolution / math.round(Number(resolutionInput.value) / 2);
-  resolution = math.round(Number(resolutionInput.value) / 2);
+  zoom /= resolution / Math.round(Number(resolutionInput.value) / 2);
+  resolution = Math.round(Number(resolutionInput.value) / 2);
   max_depth = Number(depthInput.value);
   colorIntensity = Number(colorIntInput.value) / 50;
   screenSize = Number(screenSizeInput.value) * 4;

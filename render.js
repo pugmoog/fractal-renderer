@@ -21,8 +21,7 @@ function render() {
     }
 
     if (zx * zx + zy * zy > 4) {
-      const rgb = hsvToRgb(j * colorIntensity, 1, (j * colorIntensity) / 30);
-      setColor(data, i, rgb[0], rgb[1], rgb[2], 255);
+      setColor(data, i, palette[j * 3], palette[j * 3 + 1], palette[j * 3 + 2], 255);
     } else {
       setColor(data, i, 0, 0, 0, 255);
     }

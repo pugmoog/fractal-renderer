@@ -7,6 +7,8 @@ let ctx = canvas.getContext("2d");
 
 let max_depth = 100;
 let colorIntensity = 2;
+let colorDelay = 0;
+let colorFade = 100;
 let resolution = 50;
 let screenSize = 50;
 const style = getComputedStyle(canvas);
@@ -14,10 +16,14 @@ const resolutionInput = document.getElementById("resolution-input");
 const depthInput = document.getElementById("depth-input");
 const colorIntInput = document.getElementById("color-int-input");
 const screenSizeInput = document.getElementById("screen-size-input");
+const colorDelayInput = document.getElementById("color-delay-input");
+const colorFadeInput = document.getElementById("color-fade-input");
 
 let mouseDown = false;
 let lastMouseX = 0;
 let lastMouseY = 0;
+
+let palette;
 
 updateSettings();
 
@@ -28,6 +34,10 @@ canvas.addEventListener("mousedown", (e) => {
 });
 
 canvas.addEventListener("mouseup", (e) => {
+  mouseDown = false;
+});
+
+canvas.addEventListener("mouseleave", (e) => {
   mouseDown = false;
 });
 
@@ -117,6 +127,8 @@ function updateSettings() {
   max_depth = Number(depthInput.value);
   colorIntensity = Number(colorIntInput.value) / 50;
   screenSize = Number(screenSizeInput.value) * 4;
+  colorDelay = Number(colorDelayInput.value);
+  colorFade = Number(colorFadeInput.value);
 
   canvas.style.width = String(screenSize) + "px";
   canvas.style.height = String(screenSize * 0.75) + "px";
@@ -124,5 +136,12 @@ function updateSettings() {
   canvas.width = (canvas.clientWidth * resolution) / 100;
   canvas.height = (canvas.clientHeight * resolution) / 100;
 
+  palette = new Uint8Array(max_depth * 3 + 1);
+  for (let i = 0; i < max_depth; i++) {
+    const rgb = hsvToRgb(i * colorIntensity, 1, (i * colorIntensity) / 30);
+    palette[i * 3] = rgb[0];
+    palette[i * 3 + 1] = rgb[1];
+    palette[i * 3 + 2] = rgb[2];
+  }
   render();
 }

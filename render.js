@@ -8,10 +8,10 @@ function render() {
     const x = pixelNum % canvas.width;
     const y = Math.floor(pixelNum / canvas.width);
 
-    let cx = x / zoom + scroll_x;
-    let cy = y / zoom + scroll_y;
-    let zx = 0;
-    let zy = 0;
+    let pixelX = x / zoom + scroll_x;
+    let pixelY = y / zoom + scroll_y;
+
+    eval(startEquation);
 
     let j;
     let zx_new = 0;

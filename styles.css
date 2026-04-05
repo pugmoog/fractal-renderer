@@ -10,3 +10,7 @@ canvas {
   width: 400px;
   height: 300px;
 }
+
+.equation-input {
+  width:400px
+}

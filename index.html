@@ -30,7 +30,7 @@
 
     <details>
       <summary><strong>Color Settings</strong></summary>
-      <a>Color Intensity: </a>
+      <a>Color Change: </a>
       <input id="color-int-input" type="number" value="100" step="1" /><br>
       <a>Color Delay: </a>
       <input id="color-delay-input" type="number" value="0" step="1" /><br>
@@ -46,8 +46,14 @@
       <input id="screen-size-input" type="number" value="100" step="1" /><br>
       <a>Max Overflow: </a>
       <input id="max-overflow-input" type="number" value="2" step="1" /><br>
-      <a>Equation: </a>
-      <input id="equation-input" type="text" value="zx_new = zx * zx - zy * zy + cx; zy_new = 2 * zx * zy + cy;" /><br>
+      <a>Equation: </a><br>
+      <textarea id="equation-input" rows="3" cols="35">zx_new = zx * zx - zy * zy + cx;
+zy_new = 2 * zx * zy + cy;</textarea><br>
+      <a>At Start: </a><br>
+      <textarea id="start-input" rows="3" cols="35">let cx = pixelX;
+let cy = pixelY;
+let zx = 0;
+let zy = 0;</textarea><br>
     </details>
 
     <br />

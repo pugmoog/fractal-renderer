@@ -11,8 +11,7 @@ function render() {
     let pixelX = x / zoom + scroll_x;
     let pixelY = y / zoom + scroll_y;
 
-    console.log(startEquation)
-    eval(startEquation);
+    console.log("Evaluating start equation:", eval(startEquation));
 
     let j;
     let zx_new = 0;

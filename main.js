@@ -1,29 +1,19 @@
-let scroll_x = -2.3;
-let scroll_y = -1.5;
-let zoom = 50;
+var scroll_x = -2.3;
+var scroll_y = -1.5;
+var zoom = 50;
 
-let canvas = document.getElementById("display");
-let ctx = canvas.getContext("2d");
+var canvas = document.getElementById("display");
+var ctx = canvas.getContext("2d");
 
-let max_depth = 100;
-let colorIntensity = 2;
-let colorDelay = 0;
-let colorFade = 100;
-let resolution = 50;
-let screenSize = 50;
-const style = getComputedStyle(canvas);
-const resolutionInput = document.getElementById("resolution-input");
-const depthInput = document.getElementById("depth-input");
-const colorIntInput = document.getElementById("color-int-input");
-const screenSizeInput = document.getElementById("screen-size-input");
-const colorDelayInput = document.getElementById("color-delay-input");
-const colorFadeInput = document.getElementById("color-fade-input");
-
-let mouseDown = false;
-let lastMouseX = 0;
-let lastMouseY = 0;
-
-let palette;
+var max_depth = 100;
+var colorIntensity = 2;
+var colorDelay = 0;
+var colorFade = 100;
+var resolution = 50;
+var screenSize = 50;
+var maxOverflow = 2;
+var equation = "zx_new = zx * zx - zy * zy + cx; zy_new = 2 * zx * zy + cy;"
+var palette;
 
 updateSettings();
 
@@ -122,13 +112,15 @@ function hsvToRgb(h, s, v) {
 }
 
 function updateSettings() {
-  zoom /= resolution / Math.round(Number(resolutionInput.value) / 2);
-  resolution = Math.round(Number(resolutionInput.value) / 2);
-  max_depth = Number(depthInput.value);
-  colorIntensity = Number(colorIntInput.value) / 50;
-  screenSize = Number(screenSizeInput.value) * 4;
-  colorDelay = Number(colorDelayInput.value);
-  colorFade = Number(colorFadeInput.value);
+  zoom /= resolution / Math.round(Number(document.getElementById("res-input").value) / 2);
+  resolution = Math.round(Number(document.getElementById("res-input").value) / 2);
+  max_depth = Number(document.getElementById("depth-input").value);
+  colorIntensity = Number(document.getElementById("color-int-input").value) / 50;
+  screenSize = Number(document.getElementById("screen-size-input").value) * 4;
+  colorDelay = Number(document.getElementById("color-delay-input").value);
+  colorFade = Number(document.getElementById("color-fade-input").value);
+  maxOverflow = Number(document.getElementById("max-overflow-input").value);
+  equation = document.getElementById("equation-input").value;
 
   canvas.style.width = String(screenSize) + "px";
   canvas.style.height = String(screenSize * 0.75) + "px";
@@ -138,7 +130,7 @@ function updateSettings() {
 
   palette = new Uint8Array(max_depth * 3 + 1);
   for (let i = 0; i < max_depth; i++) {
-    const rgb = hsvToRgb(i * colorIntensity, 1, (i * colorIntensity) / 30);
+    const rgb = hsvToRgb(colorDelay + i * colorIntensity, 1, (i * colorFade) / 30);
     palette[i * 3] = rgb[0];
     palette[i * 3 + 1] = rgb[1];
     palette[i * 3 + 2] = rgb[2];

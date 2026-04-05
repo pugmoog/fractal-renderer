@@ -1,4 +1,5 @@
 function render() {
+  let limit = maxOverflow * maxOverflow;
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let data = imageData.data;
 
@@ -13,14 +14,15 @@ function render() {
     let zy = 0;
 
     let j;
-    for (j = 0; j < max_depth && zx * zx + zy * zy < 4; j += 1) {
-      zx_new = zx * zx - zy * zy + cx;
-      zy_new = 2 * zx * zy + cy;
+    let zx_new = 0;
+    let zy_new = 0;
+    for (j = 0; j < max_depth && zx * zx + zy * zy < limit; j += 1) {
+      eval(equation);
       zx = zx_new;
       zy = zy_new;
     }
 
-    if (zx * zx + zy * zy > 4) {
+    if (zx * zx + zy * zy > limit) {
       setColor(data, i, palette[j * 3], palette[j * 3 + 1], palette[j * 3 + 2], 255);
     } else {
       setColor(data, i, 0, 0, 0, 255);

@@ -125,8 +125,8 @@ function updateSettings() {
   colorDelay = Number(document.getElementById("color-delay-input").value);
   colorFade = Number(document.getElementById("color-fade-input").value);
   maxOverflow = Number(document.getElementById("max-overflow-input").value);
-  equation = document.getElementById("equation-input").value;
-  startEquation = document.getElementById("start-input").value;
+  equation = document.getElementById("equation-input").innerHTML;
+  startEquation = document.getElementById("start-input").innerHTML;
 
   canvas.style.width = String(screenSize) + "px";
   canvas.style.height = String(screenSize * 0.75) + "px";

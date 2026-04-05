@@ -13,7 +13,7 @@ var resolution = 50;
 var screenSize = 50;
 var maxOverflow = 2;
 var equation = "zx_new = zx * zx - zy * zy + cx; zy_new = 2 * zx * zy + cy;"
-var startEquation = "let cx = pixelX; let cy = pixelY; let zx = 0; let zy = 0;"
+var startEquation = "var cx = pixelX; var cy = pixelY; var zx = 0; var zy = 0;"
 var palette;
 
 var mouseDown = false;

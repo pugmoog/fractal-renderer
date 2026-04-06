@@ -22,21 +22,21 @@ var lastMouseY = 0;
 
 updateSettings();
 
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("pointerdown", (e) => {
   mouseDown = true;
   lastMouseX = e.offsetX;
   lastMouseY = e.offsetY;
 });
 
-canvas.addEventListener("mouseup", (e) => {
+canvas.addEventListener("pointerup", (e) => {
   mouseDown = false;
 });
 
-canvas.addEventListener("mouseleave", (e) => {
+canvas.addEventListener("pointerout", (e) => {
   mouseDown = false;
 });
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("pointermove", (e) => {
   if (mouseDown) {
     let dx = lastMouseX - e.offsetX;
     let dy = lastMouseY - e.offsetY;

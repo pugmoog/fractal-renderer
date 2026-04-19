@@ -17,10 +17,10 @@ function render() {
 
     zx = 0; zy=0; cx=0; cy=0;
     const start = executeStartEquation(pixelX, pixelY);
-    zx = start.zx || 0;
-    zy = start.zy || 0;
-    cx = start.cx || pixelX;
-    cy = start.cy || pixelY;
+    zx = start.zx;
+    zy = start.zy;
+    cx = start.cx;
+    cy = start.cy;
     
     let j;
     zx_new = 0;
